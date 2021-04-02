@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:quit_force/screens/wrapper.dart';
 import 'package:provider/provider.dart';
 import 'package:quit_force/services/auth.dart';
@@ -15,9 +16,8 @@ class MyApp extends StatelessWidget {
     return StreamProvider<User>.value(
       value: AuthService().user,
       child: MaterialApp(
-         home: Wrapper(),
+        home: Wrapper(),
       ),
     );
   }
 }
-

@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:quit_force/models/bottomnavigationbar.dart';
 import 'package:quit_force/services/auth.dart';
 import 'package:quit_force/screens/home/Map.dart';
-
+import 'package:quit_force/screens/body/mapbody.dart';
 
 class Map extends StatelessWidget {
-
   final AuthService _auth = AuthService();
 
   @override
@@ -27,7 +26,7 @@ class Map extends StatelessWidget {
             ),
           ],
         ),
-        body: Text('Map'),
+        body: MapUI(),
       ),
     );
   }

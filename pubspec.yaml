@@ -33,6 +33,12 @@ dependencies:
   firebase_core: ^0.4.2+1
   provider: ^3.1.0
   flutter_spinkit: "^4.0.0"
+  google_maps_flutter: ^1.2.0
+  #geolocator: '^2.1.0'
+  geolocator: 3.0.0               # AndroidX - Breaking! 
+  google_api_availability: 1.0.6  # Geolocator Dependency. 
+  meta: ^1.1.6                     # Geolocator Dependency. 
+  permission_handler: 2.2.0       # Geolocator & Meta Dependency.
 
 
 dev_dependencies:
