@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:quit_force/models/bottomnavigationbar.dart';
 import 'package:quit_force/services/auth.dart';
 import 'package:quit_force/screens/home/Dashboard.dart';
-
+import 'package:quit_force/screens/body/dashboardbody.dart';
 
 class Dashboard extends StatelessWidget {
-
   final AuthService _auth = AuthService();
 
   @override
@@ -27,7 +26,7 @@ class Dashboard extends StatelessWidget {
             ),
           ],
         ),
-        body: Text('Dashboard'),
+        body: NewStopWatch(),
       ),
     );
   }

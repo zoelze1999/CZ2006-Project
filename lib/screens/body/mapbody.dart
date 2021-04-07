@@ -1,6 +1,12 @@
+import 'dart:collection';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+final firestoreInstance = Firestore.instance;
 
 class MapUI extends StatelessWidget {
   @override
@@ -23,13 +29,37 @@ class _MapPageState extends State<MapPage> {
 
   var currentLocation;
 
+  List<Marker> _markers = <Marker>[];
+  var clients = [];
+
   GoogleMapController mapController;
+
+  void _onPressed() async {
+    print("enter1234");
+
+    QuerySnapshot qs =
+        await firestoreInstance.collection("markers").getDocuments();
+    List elements = [];
+    qs.documents.forEach((element) {
+      elements.add(element.data);
+      print(element.data['location']);
+
+      _markers.add(Marker(
+          markerId: MarkerId(element.data['tel no.']),
+          position: LatLng(element.data['location'].latitude,
+              element.data['location'].longitude),
+          infoWindow: InfoWindow(title: element.data['quit centre name'])));
+    });
+  }
 
   void initState() {
     super.initState();
+    _onPressed();
     Geolocator().getCurrentPosition().then((currloc) {
       setState(() {
         currentLocation = currloc;
+
+        print(_markers);
         mapToggle = true;
       });
     });
@@ -51,7 +81,9 @@ class _MapPageState extends State<MapPage> {
                         initialCameraPosition: CameraPosition(
                             target: LatLng(currentLocation.latitude,
                                 currentLocation.longitude),
-                            zoom: 12.0))
+                            zoom: 12.0),
+                        markers: Set<Marker>.of(_markers),
+                      )
                     : Center(
                         child: Text(
                         'Loading .. Please wait ..',

@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:quit_force/services/auth.dart';
 import 'package:quit_force/shared/constants.dart';
+import 'package:quit_force/screens/authenticate/forgetpw.dart';
 import 'package:flutter/src/material/input_decorator.dart';
 
 class SignIn extends StatefulWidget {
-
   final Function toggleView;
-  SignIn({ this.toggleView });
+  SignIn({this.toggleView});
 
   @override
   _SignInState createState() => _SignInState();
 }
-final _formKey = GlobalKey<FormState>();
-class _SignInState extends State<SignIn> {
 
+final _formKey = GlobalKey<FormState>();
+
+class _SignInState extends State<SignIn> {
   final AuthService _auth = AuthService();
 
   String error = '';
@@ -39,12 +40,11 @@ class _SignInState extends State<SignIn> {
         ],
       ),
       body: Container(
-
         child: Form(
           key: _formKey,
           child: Column(
             children: <Widget>[
-              SizedBox(height: 40.0, width: 50.0),
+              SizedBox(height: 35.0, width: 50.0),
               TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: 'email'),
                 validator: (val) => val.isEmpty ? 'Enter an email' : null,
@@ -56,7 +56,8 @@ class _SignInState extends State<SignIn> {
               TextFormField(
                 obscureText: true,
                 decoration: textInputDecoration.copyWith(hintText: 'password'),
-                validator: (val) => val.length < 6 ? 'Enter a password 6+ chars long' : null,
+                validator: (val) =>
+                    val.length < 6 ? 'Enter a password 6+ chars long' : null,
                 onChanged: (val) {
                   setState(() => password = val);
                 },
@@ -69,17 +70,30 @@ class _SignInState extends State<SignIn> {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () async {
-                    if(_formKey.currentState.validate()){
-                      dynamic result = await _auth.signInWithEmailAndPassword(email, password);
-                      if(result == null) {
+                    if (_formKey.currentState.validate()) {
+                      dynamic result = await _auth.signInWithEmailAndPassword(
+                          email, password);
+                      if (result == null) {
                         setState(() {
                           error = 'Could not sign in with those credentials';
                         });
                       }
                     }
-                  }
+                  }),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    child: Text('Forgot Password?'),
+                    onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => ResetScreen()),
+                    ),
+                  )
+                ],
               ),
-              SizedBox(height: 12.0,),
+              SizedBox(
+                height: 12.0,
+              ),
               Text(
                 error,
                 style: TextStyle(color: Colors.red, fontSize: 14.0),
