@@ -5,6 +5,9 @@ import 'package:geolocator/geolocator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:quit_force/screens/body/searchpage.dart';
+import 'package:quit_force/screens/home/Search.dart';
+//import 'package:quit_force/screens/body/searchservice.dart';
 
 final firestoreInstance = Firestore.instance;
 
@@ -48,7 +51,9 @@ class _MapPageState extends State<MapPage> {
           markerId: MarkerId(element.data['tel no.']),
           position: LatLng(element.data['location'].latitude,
               element.data['location'].longitude),
-          infoWindow: InfoWindow(title: element.data['quit centre name'])));
+          infoWindow: InfoWindow(
+              title: element.data['quit centre name'],
+              snippet: ("Tel: +65 ") + element.data['tel no.'])));
     });
   }
 
@@ -83,13 +88,20 @@ class _MapPageState extends State<MapPage> {
                                 currentLocation.longitude),
                             zoom: 12.0),
                         markers: Set<Marker>.of(_markers),
+                        scrollGesturesEnabled: true,
+                        tiltGesturesEnabled: true,
+                        rotateGesturesEnabled: true,
+                        myLocationButtonEnabled: true,
+                        myLocationEnabled: true,
+                        compassEnabled: true,
+                        zoomGesturesEnabled: true,
                       )
                     : Center(
                         child: Text(
                         'Loading .. Please wait ..',
                         style: TextStyle(fontSize: 20.0),
                       )),
-              )
+              ),
             ],
           )
         ],

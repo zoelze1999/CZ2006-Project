@@ -22,7 +22,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Container(
         padding: EdgeInsets.only(left: 16, top: 0, right: 16),
         child: GestureDetector(
@@ -87,10 +86,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
               SizedBox(
                 height: 35,
               ),
-              buildTextField("Full Name", "Zoe Lim", false),
-              buildTextField("E-mail", "zoe@gmail.com", false),
+              buildTextField("Full Name", "Suhana Gupta", false),
+              buildTextField("E-mail", "suhanagupta@hotmail.com", false),
               buildTextField("Password", "********", true),
-              buildTextField("Quit Date", "14/03/2021",false),
+              buildTextField("Quit Date", "07/04/2021", false),
               SizedBox(
                 height: 35,
               ),
@@ -141,16 +140,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
         decoration: InputDecoration(
             suffixIcon: isPasswordTextField
                 ? IconButton(
-              onPressed: () {
-                setState(() {
-                  showPassword = !showPassword;
-                });
-              },
-              icon: Icon(
-                Icons.remove_red_eye,
-                color: Colors.grey,
-              ),
-            )
+                    onPressed: () {
+                      setState(() {
+                        showPassword = !showPassword;
+                      });
+                    },
+                    icon: Icon(
+                      Icons.remove_red_eye,
+                      color: Colors.grey,
+                    ),
+                  )
                 : null,
             contentPadding: EdgeInsets.only(bottom: 3),
             labelText: labelText,
