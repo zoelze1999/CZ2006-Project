@@ -4,7 +4,6 @@ import 'package:quit_force/services/auth.dart';
 import 'package:quit_force/screens/body/profilebody.dart';
 
 class Profile extends StatelessWidget {
-
   final AuthService _auth = AuthService();
 
   @override
@@ -14,6 +13,7 @@ class Profile extends StatelessWidget {
         backgroundColor: Colors.green[50],
         appBar: AppBar(
           title: Text('Profile'),
+          toolbarHeight: 100.0,
           backgroundColor: Colors.green[400],
           elevation: 0.0,
           actions: <Widget>[

@@ -78,7 +78,7 @@ class _MapPageState extends State<MapPage> {
           Stack(
             children: <Widget>[
               Container(
-                height: MediaQuery.of(context).size.height - 117.0,
+                height: MediaQuery.of(context).size.height - 160.0,
                 width: double.infinity,
                 child: mapToggle
                     ? GoogleMap(

@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quit_force/services/auth.dart';
 import 'package:quit_force/models/bottomnavigationbar.dart';
 
-
 class Home extends StatelessWidget {
-
   final AuthService _auth = AuthService();
 
   @override
@@ -14,6 +12,7 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.green[50],
         appBar: AppBar(
           title: Text('Force Quit'),
+          toolbarHeight: 100.0,
           backgroundColor: Colors.green[400],
           elevation: 0.0,
           actions: <Widget>[
@@ -26,9 +25,8 @@ class Home extends StatelessWidget {
             ),
           ],
         ),
-          bottomNavigationBar: bottomNavigationBar(),
+        bottomNavigationBar: bottomNavigationBar(),
       ),
     );
   }
 }
-

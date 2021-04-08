@@ -14,6 +14,7 @@ class Map extends StatelessWidget {
         backgroundColor: Colors.green[50],
         appBar: AppBar(
           title: Text('Map'),
+          toolbarHeight: 100.0,
           backgroundColor: Colors.green[400],
           elevation: 0.0,
           actions: <Widget>[
